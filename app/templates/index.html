@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <link rel="icon" href="/static/images/robot.png">
+    <title>index</title>
+    <link rel="stylesheet" href="/static/css/semantic.css" media="screen" title="no title" charset="utf-8">
+    <link href="https://fonts.googleapis.com/css?family=Play" rel="stylesheet">
+    <style media="screen">
+    .ui.inverted.top.borderless.blue.menu {
+        margin-bottom: 0px;
+    }
+
+    .ui.vertical.segment.masthead {
+        height: 300px;
+        background: url('/static/images/RoboBrain.jpg');
+        background-size: cover;
+        background-position: 100% 80%;
+        }
+
+    .ui.basic.center.aligned.segment p {
+      font-style: oblique;
+      font-size: 15px;
+    }
+
+    </style>
+  </head>
+  <body>
+
+    <div class="ui inverted top borderless blue menu">
+        <div class="header item">
+            <h2 class="ui inverted header">NEU云机器人</h2>
+        </div>
+
+        <a href="/index/" class="item active"><h3 class="ui inverted header">首页</h3></a>
+        <a href="/control_panel/" class="item"><h3 class="ui inverted header">控制终端</h3></a>
+
+        <div class=" right menu">
+          {% if request.user.is_authenticated %}
+          <div class="item">
+              <h5 class="ui inverted header">
+                      <div class="ui mini circular image">
+                          <img src=" /static/images/turtlebot.jpeg" alt="">
+                      </div>
+
+                      <span>{{request.user.username}}</span>
+                  </h5>
+          </div>
+          <div class="item">
+
+              <a href="/logout/" class="ui inverted circular button">Logout</a>
+
+          </div>
+          {% else %}
+
+          <div class="item">
+
+              <a href="/login/" class="ui inverted circular button">Login/Register</a>
+
+          </div>
+          {% endif %}
+
+        </div>
+
+    </div>
+
+    <div class="ui inverted vertical segment masthead"></div>
+
+    <div class="ui segment" style="margin-left:15px;margin-right:15px;">
+      <div class="ui grid">
+        <div class="twelve wide column">
+          <div class="ui  basic segment">
+            <img src="/static/images/control_panel.png" alt="control_panel.png" >
+          </div>
+        </div>
+
+        <div class=" four wide column">
+          <div class="ui basic center aligned segment" style="position:absolute;top:50%;transform:translate(-50%,-50%);">
+              <h4>该系统为移动机器人远程导航与控制测试系统</h4>
+              <h4>若需使用控制终端，请登陆后操作</h4>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+
+
+  </body>
+</html>
