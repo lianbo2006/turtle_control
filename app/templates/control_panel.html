@@ -33,7 +33,7 @@
         <div class="item">
             <h5 class="ui inverted header">
                     <div class="ui mini circular image">
-                        <img src=" /static/images/turtlebot.jpeg" alt="">
+                        <img src="/static/images/turtlebot.jpeg" alt="">
                     </div>
 
                     <span>{{request.user.username}}</span>
@@ -68,7 +68,7 @@
           <div class="field">
             <div class="ui labeled input">
             <div class="ui blue label">rosbridgeHost</div>
-            <input id="rosbridgeHost" name="rosbridgeHost"  type="text" value="localhost" >
+            <input id="rosbridgeHost" name="rosbridgeHost"  type="text" value="" >
             </div>
           </div>
           <div class="field">
@@ -80,7 +80,7 @@
           <div class="field">
             <div class="ui labeled input">
             <div class="ui blue label">videoHost</div>
-            <input id="videoHost" name="videoHost" type="text" value="localhost">
+            <input id="videoHost" name="videoHost" type="text" value="">
             </div>
           </div>
           <div class="field">
@@ -90,7 +90,7 @@
             </div>
           </div>
           </div>
-          <button class="ui blue button" type="button" onClick="init()">连接服务器</button>
+          <button class="ui blue button" type="button" onClick="reinit()">连接服务器</button>
 
       </div>
       </form>
