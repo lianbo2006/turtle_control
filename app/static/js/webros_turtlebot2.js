@@ -39,9 +39,9 @@ function init() {
 
    // 修改web_video_server相关参数
    //  src_site1 = "http://" + videoHost + ":" + videoPort + "/stream?topic=/usb_cam/image_raw&quality=50&width=200&height=160";
-   src_site1 = "http://" + videoHost + ":" + videoPort + "/stream?topic=/camera/rgb/image_raw&quality=90&width=480&height=320";
+   src_site1 = "http://" + videoHost + ":" + videoPort + "/stream?topic=/camera/rgb/image_raw&quality=50&width=480&height=320";
    src_site2 = "http://" + videoHost + ":" + videoPort + "/stream?topic=/camera/depth/image_raw";
-   src_site3 = "/static/images/blackback.jpg";
+   src_site3 = "static/images/blackback.jpg";
    video_raw = document.getElementById("cam_raw");
    vidShow='停止';
    video_raw.src=src_site3;
@@ -74,13 +74,14 @@ function init() {
    directionShow();
 
    // 创建地图窗口
-   var viewer = new ROS2D.Viewer({
+      viewer = new ROS2D.Viewer({
        divID: 'Nav',
-       width: 500,
+       width: 600,
        height: 440
    });
+
    // 设置导航的客户端
-   var nav = NAV2D.OccupancyGridClientNav({
+      nav = NAV2D.OccupancyGridClientNav({
        ros: rbServer,
        rootObject: viewer.scene,
        viewer: viewer,
@@ -159,7 +160,7 @@ function init() {
 
       // 修改web_video_server相关参数
       //  src_site1 = "http://" + videoHost + ":" + videoPort + "/stream?topic=/usb_cam/image_raw&quality=50&width=200&height=160";
-      src_site1 = "http://" + videoHost + ":" + videoPort + "/stream?topic=/camera/rgb/image_raw&quality=60&width=240&height=160";
+      src_site1 = "http://" + videoHost + ":" + videoPort + "/stream?topic=/camera/rgb/image_raw&quality=50&width=480&height=320";
       src_site2 = "http://" + videoHost + ":" + videoPort + "/stream?topic=/camera/depth/image_raw";
       src_site3 = "static/images/blackback.jpg";
       video_raw = document.getElementById("cam_raw");
@@ -192,9 +193,10 @@ function playPause(){
 }
 
 //　计时器定义
-var t1;
-var t2;
-var t3;
+var t1; //遥控计时器变量
+var t2; //遥控计时器停止变量
+var t3; //方向判断计时器变量
+var t4; //声音播放计时器变量
 
 //　定义速度消息发布函数
 function cmdPub() {
@@ -223,18 +225,50 @@ function buttonControl(code) {
     stopTimer();
   }
   else {
-    startTimer(code);
+    startTimer_sound(code);
+    startTimer_set(code);
+  }
+
+  //定义遥控语音计时器启动函数
+  function startTimer_sound(code_soundTimer) {
+    playSound(code_soundTimer);
+    t4 = setInterval(function() {playSound(code_soundTimer)}, 3000);
+  }
+
+  //定义遥控语音函数
+  function playSound(code_sound) {
+    // 向左
+  	if (code_sound == 'left' ) {
+  		document.getElementById('sound_Left').innerHTML = '<audio autoplay="autoplay"><source src="http://127.0.0.1:8002/Left.ogg" type="audio/ogg"><source src="http://127.0.0.1:8002/Left.mp3" type="audio/mp3"></audio>';
+      console.log('正在左转');
+    }
+  	// 向前
+  	else if (code_sound == 'forward' ) {
+  		document.getElementById('sound_Forward').innerHTML = '<audio autoplay="autoplay"><source src="http://127.0.0.1:8002/Forward.ogg" type="audio/ogg"><source src="http://127.0.0.1:8002/Forward.mp3" type="audio/mp3"></audio>';
+      console.log('正在前进');
+    }
+  	// 向右
+  	else if (code_sound == 'right') {
+  		document.getElementById('sound_Right').innerHTML = '<audio autoplay="autoplay"><source src="http://127.0.0.1:8002/Right.ogg" type="audio/ogg"><source src="http://127.0.0.1:8002/Right.mp3" type="audio/mp3"></audio>';
+      console.log('正在右转');
+    }
+  	// 向后
+  	else if (code_sound == 'backward') {
+  		document.getElementById('sound_Backward').innerHTML = '<audio autoplay="autoplay"><source src="http://127.0.0.1:8002/Backward.ogg" type="audio/ogg"><source src="http://127.0.0.1:8002/Backward.mp3" type="audio/mp3"></audio>';
+      console.log('正在后退');
+    }
   }
 
   // 定义遥控计时器启动函数
-  function startTimer(code2) {
-    setSpeed(code2);
-    t1 = setInterval(function() {setSpeed(code2)}, 50);
+  function startTimer_set(code_timer) {
+    setSpeed(code_timer);
+    t1 = setInterval(function() {setSpeed(code_timer)}, 50);
   }
 
   // 定义遥控计时器停止函数
   function stopTimer() {
     clearInterval(t1);
+    clearInterval(t4);
     if (vx == 0 && vz == 0) {
       clearInterval(t2);
     }
@@ -243,32 +277,32 @@ function buttonControl(code) {
     }
   }
 
-  //　定义遥控速度设定函数，通过code1判断按键
-  function setSpeed(code1) {
+  //　定义遥控速度设定函数，通过code_set判断按键
+  function setSpeed(code_set) {
 
   	// 向左
-  	if (code1 == 'left' ) {
+  	if (code_set == 'left' ) {
   		vz += vz_increment;
   	}
   	// 向前
-  	else if (code1 == 'forward' ) {
+  	else if (code_set == 'forward' ) {
   		vx += vx_increment;
   	}
   	// 向右
-  	else if (code1 == 'right') {
+  	else if (code_set == 'right') {
   		vz -= vz_increment;
   	}
   	// 向后
-  	else if (code1 == 'backward') {
+  	else if (code_set == 'backward') {
   		vx -= vx_increment;
   	}
     // //　向左前
-    // else if (code1 == 'strafe_left') {
+    // else if (code_set == 'strafe_left') {
   	// 	vx += vx_increment;
     //  vz += vz_increment;
   	// }
     // //　向右前
-    // else if (code1 == 'strafe_right') {
+    // else if (code_set == 'strafe_right') {
   	// 	vx += vx_increment;
     //  vz -= vz_increment;
   	// }

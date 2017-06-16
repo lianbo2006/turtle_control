@@ -1,10 +1,12 @@
-from django.shortcuts import render,redirect
+from django.shortcuts import render, redirect, HttpResponse
+from app.models import Sound
 from django.contrib.auth import login
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from app.forms import UserCreationForm
 from django.core.exceptions import ObjectDoesNotExist
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
+from django.template import Context, Template
 
 # Create your views here.
 def index(request):
@@ -46,6 +48,5 @@ def index_login(request):
 
 @login_required(login_url='login')
 def control_panel(request):
-
     context = {}
     return render(request, 'control_panel.html', context)
