@@ -39,7 +39,7 @@ function init() {
 
    // 修改web_video_server相关参数
    //  src_site1 = "http://" + videoHost + ":" + videoPort + "/stream?topic=/usb_cam/image_raw&quality=50&width=200&height=160";
-   src_site1 = "http://" + videoHost + ":" + videoPort + "/stream?topic=/camera/rgb/image_raw&quality=50&width=480&height=320";
+   src_site1 = "http://" + videoHost + ":" + videoPort + "/stream?topic=/camera/rgb/image_raw&quality=50&width=320&height=240";
    src_site2 = "http://" + videoHost + ":" + videoPort + "/stream?topic=/camera/depth/image_raw";
    src_site3 = "static/images/blackback.jpg";
    video_raw = document.getElementById("cam_raw");
@@ -239,22 +239,22 @@ function buttonControl(code) {
   function playSound(code_sound) {
     // 向左
   	if (code_sound == 'left' ) {
-  		document.getElementById('sound_Left').innerHTML = '<audio autoplay="autoplay"><source src="http://127.0.0.1:8002/Left.ogg" type="audio/ogg"><source src="http://127.0.0.1:8002/Left.mp3" type="audio/mp3"></audio>';
+  		document.getElementById('sound_Left').innerHTML = '<audio autoplay="autoplay"><source src="http://219.216.87.8:8002/Left.ogg" type="audio/ogg"><source src="http://219.216.87.8:8002/Left.mp3" type="audio/mp3"></audio>';
       console.log('正在左转');
     }
   	// 向前
   	else if (code_sound == 'forward' ) {
-  		document.getElementById('sound_Forward').innerHTML = '<audio autoplay="autoplay"><source src="http://127.0.0.1:8002/Forward.ogg" type="audio/ogg"><source src="http://127.0.0.1:8002/Forward.mp3" type="audio/mp3"></audio>';
+  		document.getElementById('sound_Forward').innerHTML = '<audio autoplay="autoplay"><source src="http://219.216.87.8:8002/Forward.ogg" type="audio/ogg"><source src="http://219.216.87.8:8002/Forward.mp3" type="audio/mp3"></audio>';
       console.log('正在前进');
     }
   	// 向右
   	else if (code_sound == 'right') {
-  		document.getElementById('sound_Right').innerHTML = '<audio autoplay="autoplay"><source src="http://127.0.0.1:8002/Right.ogg" type="audio/ogg"><source src="http://127.0.0.1:8002/Right.mp3" type="audio/mp3"></audio>';
+  		document.getElementById('sound_Right').innerHTML = '<audio autoplay="autoplay"><source src="http://219.216.87.8:8002/Right.ogg" type="audio/ogg"><source src="http://219.216.87.8:8002/Right.mp3" type="audio/mp3"></audio>';
       console.log('正在右转');
     }
   	// 向后
   	else if (code_sound == 'backward') {
-  		document.getElementById('sound_Backward').innerHTML = '<audio autoplay="autoplay"><source src="http://127.0.0.1:8002/Backward.ogg" type="audio/ogg"><source src="http://127.0.0.1:8002/Backward.mp3" type="audio/mp3"></audio>';
+  		document.getElementById('sound_Backward').innerHTML = '<audio autoplay="autoplay"><source src="http://219.216.87.8:8002/Backward.ogg" type="audio/ogg"><source src="http://219.216.87.8:8002/Backward.mp3" type="audio/mp3"></audio>';
       console.log('正在后退');
     }
   }
