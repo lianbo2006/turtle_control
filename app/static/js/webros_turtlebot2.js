@@ -41,7 +41,7 @@ function init() {
    //  src_site1 = "http://" + videoHost + ":" + videoPort + "/stream?topic=/usb_cam/image_raw&quality=50&width=200&height=160";
    src_site1 = "http://" + videoHost + ":" + videoPort + "/stream?topic=/camera/rgb/image_raw&quality=50&width=320&height=240";
    src_site2 = "http://" + videoHost + ":" + videoPort + "/stream?topic=/camera/depth/image_raw";
-   src_site3 = "static/images/blackback.jpg";
+   src_site3 = "/static/images/blackback.jpg";
    video_raw = document.getElementById("cam_raw");
    vidShow='停止';
    video_raw.src=src_site3;
