@@ -14,7 +14,7 @@
   <script type="text/javascript" src="{% static "js/ros2d.min.js" %}"></script>
   <script type='text/javascript' src="{% static "js/nav2d_plus.js" %}" ></script>
   <!-- script type="text/javascript" src="{% static "js/nav2d.min.js" %}"></script -->
-  <script type="text/javascript" src="{% static "js/webros_turtlebot2.js" %}"></script>
+  <script type="text/javascript" src="{% static "js/webros_t.js" %}"></script>
 
 </head>
 
@@ -27,8 +27,8 @@
       </div>
 
       <a href="/index/" class="item"><h3 class="ui inverted header">首页</h3></a>
-
-      <a href="/control_panel/" class="item active"><h3 class="ui inverted header">控制终端</h3></a>
+      <a href="/control_panel_t/" class="item active"><h3 class="ui inverted header">控制终端T</h3></a>
+      <a href="/control_panel_d/" class="item"><h3 class="ui inverted header">控制终端D</h3></a>
 
       <div class=" right menu">
         {% if request.user.is_authenticated %}

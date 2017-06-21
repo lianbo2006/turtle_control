@@ -47,6 +47,11 @@ def index_login(request):
     return render(request, 'login.html', context)
 
 @login_required(login_url='login')
-def control_panel(request):
+def control_panel_t(request):
     context = {}
-    return render(request, 'control_panel.html', context)
+    return render(request, 'control_panel_t.html', context)
+
+@login_required(login_url='login')
+def control_panel_d(request):
+    context = {}
+    return render(request, 'control_panel_d.html', context)

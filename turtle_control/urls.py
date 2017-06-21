@@ -16,13 +16,14 @@ Including another URLconf
 from django.conf.urls import url
 from django.contrib import admin
 from django.contrib.auth.views import logout
-from app.views import index,control_panel,index_register,index_login
+from app.views import index, control_panel_t, control_panel_d, index_register, index_login
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^$', index, name="index"),
     url(r'^index/', index, name="index"),
-    url(r'^control_panel/', control_panel, name="control_panel"),
+    url(r'^control_panel_t/', control_panel_t, name="control_panel_t"),
+    url(r'^control_panel_d/', control_panel_d, name="control_panel_d"),
     url(r'^register/$', index_register, name="register"),
     url(r'^login/$', index_login, name="login"),
     url(r'^logout/', logout, {'next_page': '/index'}, name="logout"),
