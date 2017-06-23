@@ -39,7 +39,7 @@ function init() {
 
    // 修改web_video_server相关参数
    //  src_site1 = "http://" + videoHost + ":" + videoPort + "/stream?topic=/usb_cam/image_raw&quality=50&width=200&height=160";
-   src_site1 = "http://" + videoHost + ":" + videoPort + "/stream?topic=/camera/rgb/image_raw&quality=50&width=320&height=240";
+   src_site1 = "http://" + videoHost + ":" + videoPort + "/stream?topic=/camera/rgb/image_raw&quality=60&width=320&height=240";
    src_site2 = "http://" + videoHost + ":" + videoPort + "/stream?topic=/camera/depth/image_raw";
    src_site3 = "/static/images/blackback.jpg";
    video_raw = document.getElementById("cam_raw");
@@ -49,14 +49,14 @@ function init() {
    // 创建控制rostopic变量,设定主节点，消息名和消息类型
    cmdVelTopic = new ROSLIB.Topic({
        ros : rbServer,
-       name : '/cmd_vel_mux/input/teleop',
+       name : '/follower_velocity_smoother/raw_cmd_vel',
        messageType : 'geometry_msgs/Twist'
    })
 
    // 创建速度rostopic变量,设定主节点，消息名和消息类型
    velocity_listener = new ROSLIB.Topic({
      ros : rbServer,
-     name : '/mobile_base/commands/velocity',
+     name : '/cmd_vel',
      messageType : 'geometry_msgs/Twist'
    })
    velocity_listener.subscribe(function(message) {
@@ -73,20 +73,20 @@ function init() {
 
    directionShow();
 
-   // 创建地图窗口
-      viewer = new ROS2D.Viewer({
-       divID: 'Nav',
-       width: 600,
-       height: 440
-   });
-
-   // 设置导航的客户端
-      nav = NAV2D.OccupancyGridClientNav({
-       ros: rbServer,
-       rootObject: viewer.scene,
-       viewer: viewer,
-       serverName: '/move_base'
-   });
+  //  // 创建地图窗口
+  //     viewer = new ROS2D.Viewer({
+  //      divID: 'Nav',
+  //      width: 600,
+  //      height: 440
+  //  });
+   //
+  //  // 设置导航的客户端
+  //     nav = NAV2D.OccupancyGridClientNav({
+  //      ros: rbServer,
+  //      rootObject: viewer.scene,
+  //      viewer: viewer,
+  //      serverName: '/move_base'
+  //  });
 
    }
 
@@ -125,14 +125,14 @@ function init() {
       // 创建控制rostopic变量,设定主节点，消息名和消息类型
       cmdVelTopic = new ROSLIB.Topic({
           ros : rbServer,
-          name : '/cmd_vel_mux/input/teleop',
+          name : '/follower_velocity_smoother/raw_cmd_vel',
           messageType : 'geometry_msgs/Twist'
       })
 
       // 创建速度rostopic变量,设定主节点，消息名和消息类型
       velocity_listener = new ROSLIB.Topic({
         ros : rbServer,
-        name : '/mobile_base/commands/velocity',
+        name : '/cmd_vel',
         messageType : 'geometry_msgs/Twist'
       })
       velocity_listener.subscribe(function(message) {
@@ -150,17 +150,17 @@ function init() {
       directionShow();
 
 
-      // 设置导航的客户端
-      nav = NAV2D.OccupancyGridClientNav({
-          ros: rbServer,
-          rootObject: viewer.scene,
-          viewer: viewer,
-          serverName: '/move_base'
-      });
-
+      // // 设置导航的客户端
+      // nav = NAV2D.OccupancyGridClientNav({
+      //     ros: rbServer,
+      //     rootObject: viewer.scene,
+      //     viewer: viewer,
+      //     serverName: '/move_base'
+      // });
+      //
       // 修改web_video_server相关参数
       //  src_site1 = "http://" + videoHost + ":" + videoPort + "/stream?topic=/usb_cam/image_raw&quality=50&width=200&height=160";
-      src_site1 = "http://" + videoHost + ":" + videoPort + "/stream?topic=/camera/rgb/image_raw&quality=50&width=480&height=320";
+      src_site1 = "http://" + videoHost + ":" + videoPort + "/stream?topic=/camera/rgb/image_raw&quality=60&width=320&height=240";
       src_site2 = "http://" + videoHost + ":" + videoPort + "/stream?topic=/camera/depth/image_raw";
       src_site3 = "static/images/blackback.jpg";
       video_raw = document.getElementById("cam_raw");

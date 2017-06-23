@@ -14,7 +14,7 @@
   <script type="text/javascript" src="{% static "js/ros2d.min.js" %}"></script>
   <script type='text/javascript' src="{% static "js/nav2d_plus.js" %}" ></script>
   <!-- script type="text/javascript" src="{% static "js/nav2d.min.js" %}"></script -->
-  <script type="text/javascript" src="{% static "js/webros_t.js" %}"></script>
+  <script type="text/javascript" src="{% static "js/webros_d.js" %}"></script>
 
 </head>
 
@@ -102,12 +102,26 @@
 
       <div class="column">
 
-        <div class="ui segment">
+        <!-- div class="ui segment">
           <div class="ui center aligned container">
             <h4 class="ui left aligned dividing header">导航地图</h4>
             <div id="Nav" class=""></div>
           </div>
+        </div -->
+
+        <div class="ui segment">
+          <h4 class="ui left aligned dividing header">监控视频</h4>
+          <div class="ui center aligned container">
+            <img id="cam_raw" class="ui middle aligned image" src="/static/images/blackback.jpg" alt="image_raw" width="480" height="320">
+            <div class="ui basic center aligned segment"style="margin-top:5px;">
+              <button id="vidButton" class="ui blue button" type="button" onclick="playPause()">彩色/停止</button>
+            </div>
+          </div>
         </div>
+
+      </div>
+
+      <div class="column">
 
         <div class="ui segment">
           <form name="maxPanel">
@@ -133,20 +147,6 @@
               </div>
             </div>
           </form>
-        </div>
-
-      </div>
-
-      <div class="column">
-
-        <div class="ui segment">
-          <h4 class="ui left aligned dividing header">监控视频</h4>
-          <div class="ui center aligned container">
-            <img id="cam_raw" class="ui middle aligned image" src="/static/images/blackback.jpg" alt="image_raw" width="480" height="320">
-            <div class="ui basic center aligned segment"style="margin-top:5px;">
-              <button id="vidButton" class="ui blue button" type="button" onclick="playPause()">彩色/停止</button>
-            </div>
-          </div>
         </div>
 
         <div class="ui center aligned container segment" onmouseup="buttonControl('stop')">
